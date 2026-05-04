@@ -1,0 +1,47 @@
+{
+  "name": "owned-systems-kit",
+  "version": "0.1.0",
+  "description": "Open-source toolkit for documenting and operating owned AI systems.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "osk": "./dist/cli.js"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "templates"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/cli.js",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "yaml": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Beach-Bum/owned-systems-kit.git"
+  },
+  "keywords": [
+    "ai",
+    "documentation",
+    "audit",
+    "evidence-chain",
+    "governance",
+    "cli",
+    "local-first"
+  ]
+}

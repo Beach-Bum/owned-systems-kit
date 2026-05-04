@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Beach-Bum/owned-systems-kit/schemas/system.schema.json",
+  "title": "Owned System Record",
+  "description": "Top-level record for an owned AI system.",
+  "type": "object",
+  "required": ["name", "version", "description", "owner", "created", "last_reviewed"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the AI system."
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of the documentation package."
+    },
+    "description": {
+      "type": "string",
+      "description": "What this system does."
+    },
+    "owner": {
+      "type": "string",
+      "description": "Person or team responsible for the system."
+    },
+    "created": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the documentation package was created."
+    },
+    "last_reviewed": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the documentation was last reviewed."
+    },
+    "providers": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "AI providers and models in use."
+    },
+    "workflows": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Primary workflows documented in this package."
+    },
+    "review_gates": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Human review gates defined."
+    },
+    "evidence_chain": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "format": { "type": "string", "enum": ["markdown", "yaml", "json"] },
+        "location": { "type": "string" }
+      }
+    }
+  }
+}

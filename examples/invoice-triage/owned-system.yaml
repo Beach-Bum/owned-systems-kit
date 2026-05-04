@@ -1,0 +1,26 @@
+# Owned System Record — Invoice Triage
+# Example project for Owned Systems Kit
+
+name: "Invoice Triage"
+version: "0.1.0"
+description: "AI-assisted invoice classification and routing with human approval for high-value items."
+owner: "Finance Operations Team"
+created: "2026-05-01"
+last_reviewed: "2026-05-01"
+
+providers:
+  - "Anthropic Claude 3.5 Sonnet"
+  - "OpenAI GPT-4o (fallback)"
+
+workflows:
+  - "invoice-classification"
+  - "vendor-matching"
+
+review_gates:
+  - "high-value-approval"
+  - "new-vendor-approval"
+
+evidence_chain:
+  enabled: true
+  format: "markdown"
+  location: "evidence/"

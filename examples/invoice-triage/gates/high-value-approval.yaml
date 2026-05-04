@@ -1,0 +1,16 @@
+# Human Review Gate: High-Value Invoice Approval
+
+name: "High-Value Invoice Approval"
+workflow: "invoice-classification"
+step: "Classify invoice"
+reviewer_role: "Finance Manager"
+
+criteria:
+  - "Classification matches invoice content"
+  - "Amount matches extracted data"
+  - "Vendor is known and approved"
+  - "Urgency rating is appropriate"
+
+escalation: "Escalate to CFO if reviewer disagrees or invoice exceeds 50,000 EUR."
+timeout: "4 business hours — if no review, hold invoice and alert Finance Manager."
+evidence_required: true

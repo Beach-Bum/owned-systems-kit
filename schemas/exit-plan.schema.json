@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Beach-Bum/owned-systems-kit/schemas/exit-plan.schema.json",
+  "title": "Vendor Exit Plan",
+  "description": "Migration paths, tested alternatives, and manual fallbacks for each dependency.",
+  "type": "object",
+  "required": ["dependency", "alternative", "manual_fallback"],
+  "properties": {
+    "dependency": {
+      "type": "string",
+      "description": "The dependency this exit plan covers."
+    },
+    "alternative": {
+      "type": "string",
+      "description": "The primary alternative."
+    },
+    "alternative_tested": {
+      "type": "boolean",
+      "description": "Whether the alternative has been tested."
+    },
+    "migration_steps": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Ordered steps to migrate."
+    },
+    "estimated_effort": {
+      "type": "string",
+      "description": "Estimated effort to migrate."
+    },
+    "data_portability": {
+      "type": "string",
+      "enum": ["full", "partial", "none"],
+      "description": "How portable the data is."
+    },
+    "manual_fallback": {
+      "type": "string",
+      "description": "How to do this task manually if all providers fail."
+    },
+    "last_tested": {
+      "type": "string",
+      "format": "date",
+      "description": "When the exit plan was last tested."
+    }
+  }
+}

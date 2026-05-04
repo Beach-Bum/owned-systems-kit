@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Beach-Bum/owned-systems-kit/schemas/evidence.schema.json",
+  "title": "Evidence Record",
+  "description": "A structured record of an AI decision: what was asked, which model answered, who approved it, and when.",
+  "type": "object",
+  "required": ["id", "timestamp", "workflow", "step", "model", "provider", "human_review_status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for this evidence record."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this decision was made."
+    },
+    "workflow": {
+      "type": "string",
+      "description": "Which workflow this decision belongs to."
+    },
+    "step": {
+      "type": "string",
+      "description": "Which step in the workflow."
+    },
+    "prompt_reference": {
+      "type": "string",
+      "description": "Reference to the prompt template used."
+    },
+    "model": {
+      "type": "string",
+      "description": "Model name and version."
+    },
+    "provider": {
+      "type": "string",
+      "description": "AI provider."
+    },
+    "input_hash": {
+      "type": "string",
+      "description": "Hash of the input data for reproducibility."
+    },
+    "output_summary": {
+      "type": "string",
+      "description": "Summary of the AI output."
+    },
+    "human_review_status": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected", "not_required"],
+      "description": "Whether a human has reviewed this decision."
+    },
+    "reviewer": {
+      "type": "string",
+      "description": "Who reviewed the decision."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional context or notes."
+    }
+  }
+}

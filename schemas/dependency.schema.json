@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Beach-Bum/owned-systems-kit/schemas/dependency.schema.json",
+  "title": "Dependency Record",
+  "description": "An external dependency: API, model, library, service, or data source.",
+  "type": "object",
+  "required": ["name", "type", "provider", "purpose"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the dependency."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["api", "model", "library", "service", "data-source"],
+      "description": "Type of dependency."
+    },
+    "provider": {
+      "type": "string",
+      "description": "Who provides this dependency."
+    },
+    "purpose": {
+      "type": "string",
+      "description": "What this dependency is used for."
+    },
+    "cost": {
+      "type": "string",
+      "description": "Estimated cost."
+    },
+    "switching_cost": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "How hard it is to switch away."
+    },
+    "alternative": {
+      "type": "string",
+      "description": "Known alternative."
+    },
+    "alternative_tested": {
+      "type": "boolean",
+      "description": "Whether the alternative has been tested."
+    },
+    "license": {
+      "type": "string",
+      "description": "License terms."
+    },
+    "data_terms": {
+      "type": "string",
+      "description": "Data handling terms."
+    },
+    "last_reviewed": {
+      "type": "string",
+      "format": "date",
+      "description": "Date this entry was last reviewed."
+    }
+  }
+}

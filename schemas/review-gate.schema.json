@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Beach-Bum/owned-systems-kit/schemas/review-gate.schema.json",
+  "title": "Human Review Gate",
+  "description": "A defined point where a human reviews and approves an AI-generated output.",
+  "type": "object",
+  "required": ["name", "workflow", "step", "reviewer_role", "criteria"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the review gate."
+    },
+    "workflow": {
+      "type": "string",
+      "description": "Which workflow this gate belongs to."
+    },
+    "step": {
+      "type": "string",
+      "description": "Which step in the workflow this gate follows."
+    },
+    "reviewer_role": {
+      "type": "string",
+      "description": "Who is authorized to approve."
+    },
+    "criteria": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "What the reviewer checks."
+    },
+    "escalation": {
+      "type": "string",
+      "description": "What happens if the reviewer rejects."
+    },
+    "timeout": {
+      "type": "string",
+      "description": "What happens if no review occurs within a time window."
+    },
+    "evidence_required": {
+      "type": "boolean",
+      "description": "Whether an evidence record must be created."
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Beach-Bum/owned-systems-kit/schemas/workflow.schema.json",
+  "title": "Workflow Definition",
+  "description": "An AI-assisted workflow with steps, inputs, outputs, and review gates.",
+  "type": "object",
+  "required": ["name", "description", "steps"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the workflow."
+    },
+    "description": {
+      "type": "string",
+      "description": "What this workflow does."
+    },
+    "owner": {
+      "type": "string",
+      "description": "Person or team responsible."
+    },
+    "trigger": {
+      "type": "string",
+      "description": "What triggers this workflow."
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["human", "ai", "automated", "review"]
+          },
+          "description": { "type": "string" },
+          "model": { "type": "string" },
+          "provider": { "type": "string" },
+          "inputs": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "outputs": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "review_gate": { "type": "string" }
+        }
+      }
+    }
+  }
+}

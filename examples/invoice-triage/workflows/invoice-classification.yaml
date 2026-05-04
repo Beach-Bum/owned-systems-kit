@@ -1,0 +1,46 @@
+# Workflow: Invoice Classification
+
+name: "Invoice Classification"
+description: "Classify incoming invoices by type, urgency, and route to the correct approver."
+owner: "Finance Operations Team"
+trigger: "New invoice received via email or upload"
+
+steps:
+  - name: "Extract invoice data"
+    type: "ai"
+    description: "Extract vendor name, amount, date, line items from invoice PDF."
+    model: "claude-3.5-sonnet"
+    provider: "Anthropic"
+    inputs:
+      - "Invoice PDF"
+    outputs:
+      - "Structured invoice data (JSON)"
+
+  - name: "Classify invoice"
+    type: "ai"
+    description: "Classify invoice by type (recurring, one-time, capital) and urgency."
+    model: "claude-3.5-sonnet"
+    provider: "Anthropic"
+    inputs:
+      - "Structured invoice data"
+      - "Vendor history"
+    outputs:
+      - "Classification (type, urgency, confidence)"
+
+  - name: "Human review (high-value)"
+    type: "review"
+    description: "Human approves classification for invoices over 10,000 EUR."
+    review_gate: "high-value-approval"
+    inputs:
+      - "Classification result"
+      - "Invoice data"
+    outputs:
+      - "Approved or rejected classification"
+
+  - name: "Route to approver"
+    type: "automated"
+    description: "Route invoice to the correct department approver based on classification."
+    inputs:
+      - "Approved classification"
+    outputs:
+      - "Routing assignment"
