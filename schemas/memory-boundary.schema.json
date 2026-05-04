@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Beach-Bum/owned-systems-kit/schemas/memory-boundary.schema.json",
+  "title": "Memory Boundary",
+  "description": "An access boundary for a knowledge source.",
+  "type": "object",
+  "required": ["source", "agent_read", "agent_write"],
+  "properties": {
+    "source": {
+      "type": "string",
+      "description": "Name of the knowledge source this boundary applies to."
+    },
+    "agent_read": {
+      "type": "string",
+      "enum": ["yes", "no", "scoped"],
+      "description": "Whether agents may read this source."
+    },
+    "agent_read_scope": {
+      "type": "string",
+      "description": "If agent_read is scoped, what the agent may read: specific folders, fields, or tags."
+    },
+    "agent_write": {
+      "type": "string",
+      "enum": ["yes", "no", "draft-only"],
+      "description": "Whether agents may write to this source."
+    },
+    "requires_review": {
+      "type": "boolean",
+      "description": "Whether agent writes require human review before taking effect."
+    },
+    "restricted": {
+      "type": "boolean",
+      "description": "Whether this source contains data agents must never access."
+    },
+    "classification": {
+      "type": "string",
+      "enum": ["public", "internal", "confidential", "restricted"],
+      "description": "Data classification level."
+    },
+    "enforced_by": {
+      "type": "string",
+      "description": "How this boundary is enforced: file permissions, API scope, manual review, other."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional context about this boundary."
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Beach-Bum/owned-systems-kit/schemas/knowledge-source.schema.json",
+  "title": "Knowledge Source",
+  "description": "A knowledge source in the company knowledge register.",
+  "type": "object",
+  "required": ["name", "type", "location", "owner"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the knowledge source."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["semantic", "episodic", "procedural", "evidence"],
+      "description": "Type of memory: semantic (facts), episodic (events), procedural (instructions), evidence (proof)."
+    },
+    "description": {
+      "type": "string",
+      "description": "What this knowledge source contains."
+    },
+    "location": {
+      "type": "string",
+      "description": "Where this source lives: file path, URL, vault name, drive folder."
+    },
+    "format": {
+      "type": "string",
+      "description": "File format: markdown, yaml, pdf, google-doc, notion, spreadsheet, other."
+    },
+    "owner": {
+      "type": "string",
+      "description": "Person or team responsible for this source."
+    },
+    "source_of_truth": {
+      "type": "boolean",
+      "description": "Whether this is the definitive version of this knowledge."
+    },
+    "read_access": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Who and what can read this source: people, teams, agents, tools."
+    },
+    "write_access": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Who and what can modify this source."
+    },
+    "restricted_data": {
+      "type": "boolean",
+      "description": "Whether this source contains personal, financial, or sensitive data."
+    },
+    "review_frequency": {
+      "type": "string",
+      "description": "How often this source is reviewed: weekly, monthly, quarterly."
+    },
+    "last_reviewed": {
+      "type": "string",
+      "format": "date",
+      "description": "Date this source was last reviewed."
+    }
+  }
+}

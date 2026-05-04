@@ -12,6 +12,14 @@ If you run a small business or team, do not start with the CLI. Start with one w
 - [First Workflow Packs](docs/workflow-packs.md) — five common starting points: inquiry triage, quoting, document review, knowledge base, handover notes
 - [First Workflow Example](examples/first-workflow/) — a complete filled-in documentation package for customer inquiry triage
 
+## Knowledge and Memory
+
+Many teams already have a company brain: Obsidian vaults, Markdown folders, Git repos, Google Docs, Notion pages, shared drives, or agent skill folders. Owned Systems Kit helps document which knowledge sources exist, which agents may read them, which files may be updated, and how memory changes are reviewed.
+
+- [Knowledge and Memory Layer](docs/knowledge-and-memory.md) — how to document company knowledge safely for AI use
+- [Company Brain Example](examples/company-brain/) — a complete example of a company knowledge register, memory boundaries, agent skills, and sync runbook
+- Templates: [Company Knowledge Register](templates/10-company-knowledge-register.md), [Memory Boundary Map](templates/11-memory-boundary-map.md), [Agent Skill Register](templates/12-agent-skill-register.md), [Knowledge Sync Runbook](templates/13-knowledge-sync-runbook.md)
+
 ## Why
 
 Most AI systems are undocumented. The prompts live in someone's head. The approval process is ad hoc. The evidence trail does not exist. When the person who built it leaves, the system becomes a black box.
@@ -153,12 +161,19 @@ JSON schemas for validating system records:
 | `review-gate.schema.json` | Human review gates |
 | `evidence.schema.json` | Evidence chain records |
 | `exit-plan.schema.json` | Vendor exit plans |
+| `knowledge-source.schema.json` | Knowledge source entries |
+| `memory-boundary.schema.json` | Memory access boundaries |
+| `agent-skill.schema.json` | Agent skill definitions |
 
 ## Examples
 
 ### First workflow (non-technical)
 
 See `examples/first-workflow/` for a complete documentation package written for a non-technical team. Uses customer inquiry triage at a fictional small business (Northstar Studio) with all ten documentation templates filled in, two human review gates, and a sample evidence record.
+
+### Company brain (knowledge and memory)
+
+See `examples/company-brain/` for a complete example of documenting a company's knowledge sources, memory boundaries, agent skills, and sync processes. Uses the same fictional company (Northstar Studio) with filled-in templates for the Company Knowledge Register, Memory Boundary Map, Agent Skill Register, and Knowledge Sync Runbook.
 
 ### Invoice triage (technical)
 

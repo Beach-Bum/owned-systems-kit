@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Beach-Bum/owned-systems-kit/schemas/agent-skill.schema.json",
+  "title": "Agent Skill",
+  "description": "An agent skill, instruction set, or prompt template.",
+  "type": "object",
+  "required": ["name", "agent", "purpose", "owner"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the agent skill."
+    },
+    "agent": {
+      "type": "string",
+      "description": "Which agent or tool uses this skill: Claude Code, ChatGPT, custom agent, MCP tool, other."
+    },
+    "purpose": {
+      "type": "string",
+      "description": "What this skill does. One sentence."
+    },
+    "source": {
+      "type": "string",
+      "description": "Where the skill definition is stored: file path, repo, platform."
+    },
+    "format": {
+      "type": "string",
+      "description": "Format of the skill definition: SKILL.md, CLAUDE.md, chatgpt-instructions, json, yaml, other."
+    },
+    "knowledge_read": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Knowledge sources this skill reads from."
+    },
+    "knowledge_written": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Knowledge sources this skill writes to."
+    },
+    "review_required": {
+      "type": "boolean",
+      "description": "Whether output from this skill requires human review."
+    },
+    "owner": {
+      "type": "string",
+      "description": "Person who maintains this skill definition."
+    },
+    "restricted_data": {
+      "type": "boolean",
+      "description": "Whether this skill handles personal, financial, or sensitive data."
+    },
+    "last_reviewed": {
+      "type": "string",
+      "format": "date",
+      "description": "Date this skill was last reviewed."
+    }
+  }
+}

@@ -1,0 +1,36 @@
+# Owned System Record — Company Knowledge and Memory
+# Example project for Owned Systems Kit
+# Company: Northstar Studio (fictional)
+
+name: "Northstar Studio Company Brain"
+version: "0.1.0"
+description: "Documentation of Northstar Studio's company knowledge sources, memory boundaries, agent skills, and sync processes. This package does not contain the knowledge itself — it documents where knowledge lives, who owns it, and how AI tools are allowed to use it."
+owner: "Sarah Chen, Operations Manager"
+created: "2026-05-01"
+last_reviewed: "2026-05-01"
+
+providers:
+  - "Anthropic Claude 3.5 Sonnet"
+
+workflows:
+  - "customer-inquiry-triage"
+  - "proposal-drafting"
+
+review_gates:
+  - "reply-approval"
+  - "knowledge-update-approval"
+
+evidence_chain:
+  enabled: true
+  format: "markdown"
+  location: "evidence/"
+
+knowledge_sources:
+  - "company-profile"
+  - "offers"
+  - "workflows"
+  - "decisions"
+
+agent_skills:
+  - "customer-inquiry-triage"
+  - "proposal-drafting"
