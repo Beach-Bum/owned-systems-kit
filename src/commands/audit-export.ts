@@ -38,40 +38,44 @@ export async function auditExport(args: string[]): Promise<void> {
   }
 
   // Copy evidence/
-  if (fileExists(join(cwd, 'evidence'))) {
-    const evidenceFiles = listFiles(join(cwd, 'evidence')).filter(f => f.endsWith('.md'));
-    if (evidenceFiles.length > 0) {
-      copyDir(join(cwd, 'evidence'), join(exportDir, 'evidence'));
-      console.log(`  evidence/ (${evidenceFiles.length} records)`);
-    }
+  const evidenceFiles = fileExists(join(cwd, 'evidence'))
+    ? listFiles(join(cwd, 'evidence')).filter(f => f.endsWith('.md'))
+    : [];
+  if (evidenceFiles.length > 0) {
+    copyDir(join(cwd, 'evidence'), join(exportDir, 'evidence'));
+    console.log(`  evidence/ (${evidenceFiles.length} records)`);
   }
 
   // Copy gates/
-  if (fileExists(join(cwd, 'gates'))) {
-    const gateFiles = listFiles(join(cwd, 'gates'));
-    if (gateFiles.length > 0) {
-      copyDir(join(cwd, 'gates'), join(exportDir, 'gates'));
-      console.log('  gates/');
-    }
+  const hasGates = fileExists(join(cwd, 'gates')) &&
+    listFiles(join(cwd, 'gates')).filter(f => f.endsWith('.yaml') || f.endsWith('.yml')).length > 0;
+  if (hasGates) {
+    copyDir(join(cwd, 'gates'), join(exportDir, 'gates'));
+    console.log('  gates/');
   }
 
   // Copy workflows/
-  if (fileExists(join(cwd, 'workflows'))) {
-    const workflowFiles = listFiles(join(cwd, 'workflows'));
-    if (workflowFiles.length > 0) {
-      copyDir(join(cwd, 'workflows'), join(exportDir, 'workflows'));
-      console.log('  workflows/');
-    }
+  const hasWorkflows = fileExists(join(cwd, 'workflows')) &&
+    listFiles(join(cwd, 'workflows')).filter(f => f.endsWith('.yaml') || f.endsWith('.yml')).length > 0;
+  if (hasWorkflows) {
+    copyDir(join(cwd, 'workflows'), join(exportDir, 'workflows'));
+    console.log('  workflows/');
   }
 
   // Copy schemas/ (from package installation or local repo)
-  const schemasDir = join(cwd, 'schemas');
-  if (fileExists(schemasDir)) {
-    copyDir(schemasDir, join(exportDir, 'schemas'));
+  const hasSchemas = fileExists(join(cwd, 'schemas'));
+  if (hasSchemas) {
+    copyDir(join(cwd, 'schemas'), join(exportDir, 'schemas'));
     console.log('  schemas/');
   }
 
-  // Write export manifest
+  // Write export manifest (only list what was actually exported)
+  const contents = ['owned-system.yaml', 'docs/'];
+  if (evidenceFiles.length > 0) contents.push('evidence/');
+  if (hasGates) contents.push('gates/');
+  if (hasWorkflows) contents.push('workflows/');
+  if (hasSchemas) contents.push('schemas/');
+
   const manifest = `# Audit Export
 # Generated: ${now.toISOString()}
 # System: ${cwd}
@@ -79,12 +83,7 @@ export async function auditExport(args: string[]): Promise<void> {
 export_date: "${now.toISOString()}"
 exported_by: "osk audit export"
 contents:
-  - owned-system.yaml
-  - docs/
-  - evidence/
-  - gates/
-  - workflows/
-  - schemas/
+${contents.map(c => `  - ${c}`).join('\n')}
 `;
   writeFile(join(exportDir, 'MANIFEST.yaml'), manifest);
   console.log('  MANIFEST.yaml');
