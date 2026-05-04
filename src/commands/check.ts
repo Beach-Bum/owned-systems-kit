@@ -33,6 +33,24 @@ export async function check(_args: string[]): Promise<void> {
     }
   }
 
+  // Check workflows directory
+  if (!fileExists(join(cwd, 'workflows'))) {
+    printResult('workflows/', 'warn', 'Directory not found');
+    hasWarnings = true;
+  } else {
+    const workflowFiles = listFiles(join(cwd, 'workflows')).filter(f => f.endsWith('.yaml') || f.endsWith('.yml'));
+    printResult('workflows/', 'ok', workflowFiles.length > 0 ? `${workflowFiles.length} workflow(s)` : 'Empty');
+  }
+
+  // Check gates directory
+  if (!fileExists(join(cwd, 'gates'))) {
+    printResult('gates/', 'warn', 'Directory not found');
+    hasWarnings = true;
+  } else {
+    const gateFiles = listFiles(join(cwd, 'gates')).filter(f => f.endsWith('.yaml') || f.endsWith('.yml'));
+    printResult('gates/', 'ok', gateFiles.length > 0 ? `${gateFiles.length} gate(s)` : 'Empty');
+  }
+
   // Check evidence directory
   const evidenceDir = join(cwd, 'evidence');
   if (!fileExists(evidenceDir)) {

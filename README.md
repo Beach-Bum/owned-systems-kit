@@ -29,6 +29,22 @@ Or use directly with npx:
 npx owned-systems-kit init
 ```
 
+## Local development
+
+```bash
+git clone https://github.com/Beach-Bum/owned-systems-kit.git
+cd owned-systems-kit
+npm install
+npm run build
+node dist/cli.js --help
+```
+
+Run the type checker:
+
+```bash
+npm run typecheck
+```
+
 ## Quickstart
 
 ```bash
@@ -143,7 +159,7 @@ See `examples/invoice-triage/` for a complete example of an AI-assisted invoice 
 ## Roadmap
 
 - [x] **Phase 1: Templates and schemas** — YAML/Markdown starters, JSON schemas, CLI scaffold
-- [ ] **Phase 2: CLI validator** — Schema validation, completeness checks, freshness warnings
+- [x] **Phase 2: CLI validator** — Schema validation, completeness checks, evidence logging
 - [ ] **Phase 3: Evidence chain format** — Append-only log specification, query tools
 - [ ] **Phase 4: Self-hosted control plane** — Dashboard that reads from Git (future, separate repo)
 

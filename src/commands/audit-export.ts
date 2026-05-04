@@ -64,6 +64,13 @@ export async function auditExport(args: string[]): Promise<void> {
     }
   }
 
+  // Copy schemas/ (from package installation or local repo)
+  const schemasDir = join(cwd, 'schemas');
+  if (fileExists(schemasDir)) {
+    copyDir(schemasDir, join(exportDir, 'schemas'));
+    console.log('  schemas/');
+  }
+
   // Write export manifest
   const manifest = `# Audit Export
 # Generated: ${now.toISOString()}
@@ -77,6 +84,7 @@ contents:
   - evidence/
   - gates/
   - workflows/
+  - schemas/
 `;
   writeFile(join(exportDir, 'MANIFEST.yaml'), manifest);
   console.log('  MANIFEST.yaml');

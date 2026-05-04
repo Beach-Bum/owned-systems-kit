@@ -17,9 +17,9 @@
   ],
   "scripts": {
     "build": "tsc",
+    "typecheck": "tsc --noEmit",
     "dev": "tsc --watch",
-    "start": "node dist/cli.js",
-    "lint": "tsc --noEmit"
+    "start": "node dist/cli.js"
   },
   "dependencies": {
     "yaml": "^2.7.0"

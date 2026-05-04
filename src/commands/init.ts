@@ -44,11 +44,12 @@ const DOC_FILES = [
   '09-exit-plan.md',
 ];
 
-export async function init(_args: string[]): Promise<void> {
+export async function init(args: string[]): Promise<void> {
   const cwd = process.cwd();
+  const force = args.includes('--force');
 
-  if (fileExists(join(cwd, 'owned-system.yaml'))) {
-    console.error('owned-system.yaml already exists. Aborting.');
+  if (!force && fileExists(join(cwd, 'owned-system.yaml'))) {
+    console.error('owned-system.yaml already exists. Use --force to overwrite.');
     process.exit(1);
   }
 
