@@ -1,0 +1,17 @@
+# Human Review Gate: Reply Approval
+
+name: "Reply Approval"
+workflow: "customer-inquiry-triage"
+step: "Draft reply"
+reviewer_role: "Team Member (any staff handling inquiries)"
+
+criteria:
+  - "Reply addresses the customer's actual question"
+  - "Tone is appropriate for the situation"
+  - "No commitments, discounts, or promises not authorized"
+  - "No incorrect information about services, pricing, or policies"
+  - "Customer name and details are correct"
+
+escalation: "If unsure about the reply, escalate to Operations Manager."
+timeout: "2 business hours — if no review, inquiry stays in queue and Operations Manager is notified."
+evidence_required: true

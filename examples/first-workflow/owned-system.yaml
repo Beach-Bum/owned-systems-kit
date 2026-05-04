@@ -1,0 +1,25 @@
+# Owned System Record — Customer Inquiry Triage
+# Example project for Owned Systems Kit
+# Company: Northstar Studio (fictional)
+
+name: "Customer Inquiry Triage"
+version: "0.1.0"
+description: "AI-assisted triage of customer inquiries: classify, summarize, draft replies, and route to the right person. Humans approve replies involving money, commitments, or sensitive information."
+owner: "Sarah Chen, Operations Manager"
+created: "2026-05-01"
+last_reviewed: "2026-05-01"
+
+providers:
+  - "Anthropic Claude 3.5 Sonnet"
+
+workflows:
+  - "customer-inquiry-triage"
+
+review_gates:
+  - "reply-approval"
+  - "refund-or-discount-approval"
+
+evidence_chain:
+  enabled: true
+  format: "markdown"
+  location: "evidence/"

@@ -4,6 +4,14 @@ Open-source toolkit for documenting and operating AI systems your team can under
 
 Owned Systems Kit creates plain-text system records, workflow maps, human review gates, evidence logs, operator runbooks, and vendor-exit plans. Everything lives in your Git repository. No database, no SaaS, no vendor lock-in.
 
+## Not technical? Start here.
+
+If you run a small business or team, do not start with the CLI. Start with one workflow that causes delays, rework, risk, or repeated admin. The workflow packs show how to decide what AI can safely assist with, what a person must approve, and what evidence your team should keep.
+
+- [Business Owner Quickstart](docs/business-owner-quickstart.md) — map one workflow in 30 minutes, no code required
+- [First Workflow Packs](docs/workflow-packs.md) — five common starting points: inquiry triage, quoting, document review, knowledge base, handover notes
+- [First Workflow Example](examples/first-workflow/) — a complete filled-in documentation package for customer inquiry triage
+
 ## Why
 
 Most AI systems are undocumented. The prompts live in someone's head. The approval process is ad hoc. The evidence trail does not exist. When the person who built it leaves, the system becomes a black box.
@@ -146,15 +154,15 @@ JSON schemas for validating system records:
 | `evidence.schema.json` | Evidence chain records |
 | `exit-plan.schema.json` | Vendor exit plans |
 
-## Example
+## Examples
 
-See `examples/invoice-triage/` for a complete example of an AI-assisted invoice classification system with:
+### First workflow (non-technical)
 
-- System record (`owned-system.yaml`)
-- Workflow definition (`workflows/invoice-classification.yaml`)
-- Human review gate (`gates/high-value-approval.yaml`)
-- Evidence record (`evidence/`)
-- System overview (`docs/00-overview.md`)
+See `examples/first-workflow/` for a complete documentation package written for a non-technical team. Uses customer inquiry triage at a fictional small business (Northstar Studio) with all ten documentation templates filled in, two human review gates, and a sample evidence record.
+
+### Invoice triage (technical)
+
+See `examples/invoice-triage/` for a developer-oriented example of AI-assisted invoice classification with a system record, workflow definition, human review gate, and evidence record.
 
 ## Roadmap
 

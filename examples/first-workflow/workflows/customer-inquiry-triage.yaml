@@ -1,0 +1,68 @@
+# Workflow: Customer Inquiry Triage
+
+name: "Customer Inquiry Triage"
+description: "Classify incoming customer inquiries, summarize context, draft a reply, and route to the right person. Human approval required before any reply is sent."
+owner: "Sarah Chen, Operations Manager"
+trigger: "New inquiry received via email, contact form, or chat"
+
+steps:
+  - name: "Classify inquiry"
+    type: "ai"
+    description: "Read the inquiry and assign a category (billing, scheduling, general question, complaint, partnership) and urgency level (standard, priority, urgent)."
+    model: "claude-3.5-sonnet"
+    provider: "Anthropic"
+    inputs:
+      - "Customer inquiry text"
+      - "Customer name and contact method"
+    outputs:
+      - "Category"
+      - "Urgency level"
+      - "Confidence score"
+
+  - name: "Summarize context"
+    type: "ai"
+    description: "Write a two-sentence summary of what the customer is asking for and any relevant context."
+    model: "claude-3.5-sonnet"
+    provider: "Anthropic"
+    inputs:
+      - "Customer inquiry text"
+      - "Category and urgency from previous step"
+    outputs:
+      - "Summary for the person handling the reply"
+
+  - name: "Draft reply"
+    type: "ai"
+    description: "Draft a reply based on the inquiry category. Use the appropriate tone and include relevant information. Do not make commitments, offer discounts, or promise timelines."
+    model: "claude-3.5-sonnet"
+    provider: "Anthropic"
+    inputs:
+      - "Customer inquiry text"
+      - "Category and urgency"
+      - "Summary"
+    outputs:
+      - "Draft reply text"
+      - "Flag: requires financial approval (yes/no)"
+
+  - name: "Human review"
+    type: "review"
+    description: "A team member reviews the draft reply, edits if needed, and approves before sending."
+    review_gate: "reply-approval"
+    inputs:
+      - "Original inquiry"
+      - "AI classification and summary"
+      - "Draft reply"
+    outputs:
+      - "Approved reply (sent to customer)"
+      - "Evidence record"
+
+  - name: "Financial review (if flagged)"
+    type: "review"
+    description: "If the inquiry involves a refund, discount, or financial commitment, a manager reviews before the reply is sent."
+    review_gate: "refund-or-discount-approval"
+    inputs:
+      - "Original inquiry"
+      - "Draft reply with financial commitment"
+      - "Customer history (if available)"
+    outputs:
+      - "Approved or modified reply"
+      - "Evidence record with financial decision"

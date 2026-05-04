@@ -1,0 +1,16 @@
+# Human Review Gate: Refund or Discount Approval
+
+name: "Refund or Discount Approval"
+workflow: "customer-inquiry-triage"
+step: "Financial review"
+reviewer_role: "Operations Manager or Owner"
+
+criteria:
+  - "Refund or discount amount is within policy"
+  - "Customer situation justifies the exception (if outside policy)"
+  - "Financial impact is understood"
+  - "Reply language is clear about what is being offered"
+
+escalation: "Refunds over 500 EUR require owner approval. Discounts over 20% require owner approval."
+timeout: "4 business hours — if no review, hold the reply and notify the owner."
+evidence_required: true
